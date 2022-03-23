@@ -1,7 +1,7 @@
 <script src="/static/admin/js/pusher.min.js"></script>
 
 <script>
-    let puher = new Pusher("{{.PreferenceMap["pusher-key"]}}", {
+    let pusher = new Pusher("{{.PreferenceMap["pusher-key"]}}", {
         authEndPoint: "/pusher/auth",
         wsHost: "localhost",
         wsPort: 4001,
@@ -10,7 +10,11 @@
         disabledTransports: []
     })
 
-    let publicChannel = pusher.subscribe("publec-channel");
+    let publicChannel = pusher.subscribe("public-channel");
+
+    publicChannel.bind("test-event", function(data){
+        successAlert(data.message);
+    })
 
     let attention = Prompt();
 
