@@ -3,6 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
+	"net/http"
+	"os"
+	"time"
+
 	"github.com/alexedwards/scs/postgresstore"
 	"github.com/alexedwards/scs/v2"
 	"github.com/pusher/pusher-http-go"
@@ -11,10 +16,6 @@ import (
 	"github.com/tsawler/vigilate/internal/driver"
 	"github.com/tsawler/vigilate/internal/handlers"
 	"github.com/tsawler/vigilate/internal/helpers"
-	"log"
-	"net/http"
-	"os"
-	"time"
 )
 
 func setupApp() (*string, error) {
@@ -23,7 +24,7 @@ func setupApp() (*string, error) {
 	identifier := flag.String("identifier", "vigilate", "unique identifier")
 	domain := flag.String("domain", "localhost", "domain name (e.g. example.com)")
 	inProduction := flag.Bool("production", false, "application is in production")
-	dbHost := flag.String("dbhost", "localhost", "database host")
+	dbHost := flag.String("dbhost", "127.0.0.1", "database host")
 	dbPort := flag.String("dbport", "5432", "database port")
 	dbUser := flag.String("dbuser", "", "database user")
 	dbPass := flag.String("dbpass", "", "database password")
